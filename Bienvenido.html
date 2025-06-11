@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenida y Conteo de Letras</title>
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+        h1 {
+            color: #00796b;
+        }
+        p {
+            font-size: 1.2em;
+            color: #004d40;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="saludo">¡Bienvenido/a!</h1>
+    <p id="mensaje">Esperando tus datos...</p>
+    <p id="conteo"></p>
+
+    <script>
+        function pedirDato(mensaje) {
+            let dato = "";
+            while (!dato || dato.trim() === "") {
+                dato = prompt(mensaje);
+                if (!dato || dato.trim() === "") {
+                    alert("Este campo no puede estar vacío. Por favor, ingrésalo correctamente.");
+                }
+            }
+            return dato.trim();
+        }
+
+        function pedirNombreYApellido() {
+            let nombre = pedirDato("Por favor, ingresa tu nombre:");
+            let apellido = pedirDato("Ahora, ingresa tu apellido:");
+            let nombreCompleto = nombre + " " + apellido;
+
+            // Calcular cantidad de letras sin contar espacios
+            let letrasSinEspacios = nombreCompleto.replace(/\s/g, '');
+            let cantidadLetras = letrasSinEspacios.length;
+
+            // Mostrar bienvenida y conteo en ventana emergente
+            alert("¡Bienvenido/a, " + nombreCompleto + "!\nTu nombre completo tiene " + cantidadLetras + " letras.");
+
+            // Mostrar información en la página
+            document.getElementById("saludo").innerText = "¡Bienvenido/a, " + nombreCompleto + "!";
+            document.getElementById("mensaje").innerText = "Gracias por visitar esta página.";
+            document.getElementById("conteo").innerText = "Tu nombre completo tiene " + cantidadLetras + " letras.";
+        }
+
+        window.onload = pedirNombreYApellido;
+    </script>
+
+</body>
+</html>
+
+
